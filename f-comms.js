@@ -155,7 +155,7 @@
   A.toggleSave = (m) => A.set((s) => { s.saved = s.saved.includes(m.id) ? s.saved.filter((x) => x !== m.id) : [m.id, ...s.saved]; });
   A.MsgMenuItems = (Item, m, c) => html`
     <${Item} icon="pin" label=${m.pinned ? 'Unpin' : 'Pin to this conversation'} onClick=${() => A.togglePin(m)} />
-    <${Item} icon="saved" label=${A.S.saved.includes(m.id) ? 'Remove from saved' : 'Save for later'} onClick=${() => { A.toggleSave(m); A.snack(A.S.saved.includes(m.id) ? 'Saved. Find it under ⚙ › Saved messages.' : 'Removed from saved.'); }} />
+    <${Item} icon="saved" label=${A.S.saved.includes(m.id) ? 'Remove bookmark' : 'Bookmark'} onClick=${() => { A.toggleSave(m); A.snack(A.S.saved.includes(m.id) ? 'Bookmarked. Find it under Bookmarks in the top row.' : 'Bookmark removed.'); }} />
     ${m.text ? html`<${Item} icon="chat" label="Translate" onClick=${() => A.translate(m)} />` : null}`;
   A.ConvHeadExtras = function ConvHeadExtras({ c }) {
     const pins = c.msgs.filter((m) => m.pinned); if (!pins.length) return null;
@@ -198,8 +198,8 @@
   }
   A.SavedView = function SavedView() {
     const S = A.S, items = S.saved.map((id) => A.findMsg(id)).filter(Boolean);
-    return html`<div className="main"><div className="page"><h1>Saved messages</h1><p className="sub">Messages you saved for later. They stay here until you remove them.</p>
-      ${!items.length ? html`<div className="emptyv"><${I} n="saved" s="24" /><b>Nothing saved yet</b>Use ⋯ on any message, then Save for later.</div>` : items.map(({ c, m }) => html`<div className="savedrow" onClick=${() => A.openConv(c.id, m.id)}>${A.USERS[m.from] ? html`<${A.Av} u=${m.from} size="24" pres=${false} />` : null}<div style=${{ flex: 1, minWidth: 0 }}><b>${A.USERS[m.from] ? A.USERS[m.from].name : 'ASPEN'}</b> <small>in ${A.convName(c)} · ${A.fmtList(m.t)}</small><div>${(m.text || '').slice(0, 160)}</div></div><button className="btn sm ghost" onClick=${(e) => { e.stopPropagation(); A.toggleSave(m); }}>Remove</button></div>`)}</div></div>`;
+    return html`<div className="main"><div className="page"><h1>Bookmarks</h1><p className="sub">Messages you bookmarked to come back to. They stay here until you remove them.</p>
+      ${!items.length ? html`<div className="emptyv"><${I} n="saved" s="24" /><b>No bookmarks yet</b>Use ⋯ on any message, then Bookmark.</div>` : items.map(({ c, m }) => html`<div className="savedrow" onClick=${() => A.openConv(c.id, m.id)}>${A.USERS[m.from] ? html`<${A.Av} u=${m.from} size="24" pres=${false} />` : null}<div style=${{ flex: 1, minWidth: 0 }}><b>${A.USERS[m.from] ? A.USERS[m.from].name : 'ASPEN'}</b> <small>in ${A.convName(c)} · ${A.fmtList(m.t)}</small><div>${(m.text || '').slice(0, 160)}</div></div><button className="btn sm ghost" onClick=${(e) => { e.stopPropagation(); A.toggleSave(m); }}>Remove</button></div>`)}</div></div>`;
   };
   A.ExtraViews = Object.assign(A.ExtraViews || {}, { saved: A.SavedView });
   A.set({});

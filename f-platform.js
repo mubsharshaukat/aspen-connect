@@ -121,7 +121,7 @@
   A.ExtraViews = Object.assign(A.ExtraViews || {}, { insights: A.InsightsView, integrations: A.IntegrationsView, security: A.SecurityView, prefs: A.PrefsView });
 
   A.GearItems = (Item) => html`<hr />
-    <${Item} icon="star" label="Saved messages" onClick=${() => A.go('saved')} />
+    <${Item} icon="star" label="Bookmarks" onClick=${() => A.go('saved')} />
     <${Item} icon="activity" label="Insights" onClick=${() => A.go('insights')} />
     <${Item} icon="shield" label="Approval rules" onClick=${() => A.go('rules')} />
     <${Item} icon="ext" label="Integrations" onClick=${() => A.go('integrations')} />

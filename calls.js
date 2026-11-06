@@ -18,7 +18,7 @@
       setTimeout(() => {
         const call = A.S.call; if (!call || call.conv !== convId || call.state !== 'ringing') return;
         if (callee && (callee.pres === 'dnd' || callee.pres === 'off')) {
-          A.set((s) => { s.call = null; A.CALLS.unshift({ id: A.nextId(), who: c.with, dir: 'out', kind: video ? 'Video' : 'Voice', t: Date.now(), dur: 'No answer' }); c.msgs.push({ id: A.nextId(), kind: 'sys', t: Date.now(), text: callee.name.split(' ')[0] + " didn't answer", reactions: {}, thread: [] }); });
+          A.set((s) => { s.call = null; A.CALLS.unshift({ id: A.nextId(), who: c.with, dir: 'out', kind: 'Call', t: Date.now(), dur: 'No answer' }); c.msgs.push({ id: A.nextId(), kind: 'sys', t: Date.now(), text: callee.name.split(' ')[0] + " didn't answer", reactions: {}, thread: [] }); });
           A.snack(callee.name.split(' ')[0] + ' is ' + A.presLabel(callee.pres).toLowerCase() + ' and didn\'t answer');
           return;
         }
@@ -38,8 +38,8 @@
       s.call = null; c.huddle = false;
       if (call.start) {
         const who = [A.ME, ...call.joined].map((u) => A.USERS[u].name.split(' ')[0]).join(', ');
-        c.msgs.push({ id: A.nextId(), kind: 'sys', t: Date.now(), text: (call.huddle ? 'Huddle' : call.video ? 'Video call' : 'Call') + ' ended · ' + mins + ' min · ' + who, reactions: {}, thread: [] });
-        A.CALLS.unshift({ id: A.nextId(), who: c.kind === 'dm' ? c.with : c.id, dir: 'out', kind: call.huddle ? 'Huddle' : call.video ? 'Video' : 'Voice', t: Date.now(), dur: mins + ' min' });
+        c.msgs.push({ id: A.nextId(), kind: 'sys', t: Date.now(), text: (call.huddle ? 'Team call' : call.video ? 'Video call' : 'Call') + ' ended · ' + mins + ' min · ' + who, reactions: {}, thread: [] });
+        A.CALLS.unshift({ id: A.nextId(), who: c.kind === 'dm' ? c.with : c.id, dir: 'out', kind: call.huddle ? 'Team call' : 'Call', t: Date.now(), dur: mins + ' min' });
       } else c.msgs.push({ id: A.nextId(), kind: 'sys', t: Date.now(), text: 'Call cancelled', reactions: {}, thread: [] });
     });
   };

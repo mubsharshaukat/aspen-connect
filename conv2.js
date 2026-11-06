@@ -43,7 +43,7 @@
       <div className="mh"><span style=${{ cursor: c.kind === 'dm' ? 'pointer' : 'default' }} onClick=${(e) => c.kind === 'dm' && A.openProfile(c.with, e)}><${A.Av2} c=${c} /></span>
         <div className="tt"><b>${A.convName(c)}${c.muted ? html`<${I} n="belloff" s="12" />` : null}</b><small>${A.convSub(c)}</small></div><span className="grow"></span>
         <span className="acts" style=${{ display: 'flex', gap: 2 }}>
-        ${c.kind !== 'system' && !docked ? html`<button className="ib" title="Voice call" onClick=${() => A.startCall(c.id, false, c.kind === 'team')}><${I} n="phone" /></button><button className="ib" title="Video call" onClick=${() => A.startCall(c.id, true)}><${I} n="video" /></button>` : null}
+        ${c.kind !== 'system' && !docked ? html`<button className="ib" title="Voice call" onClick=${() => A.startCall(c.id, false, c.kind === 'team')}><${I} n="phone" /></button>` : null}
         <button className=${'ib' + (S.panel ? ' on' : '')} title="Details" onClick=${() => A.set({ panel: S.panel ? null : { type: 'details' } })}><${I} n="info" /></button>
         <button className="ib" title="More" onClick=${(e) => A.popAt('s-conv', e, { c }, -190)}><${I} n="more" /></button></span></div>
       ${live && S.call.mini ? null : c.huddle && !live ? html`<div className="banner call"><${I} n="phone" /><b>Team call in progress</b><span className="grow"></span><button className="btn sm pri" onClick=${() => A.startCall(c.id, false, true)}>Join</button></div>` : null}

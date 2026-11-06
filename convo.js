@@ -80,14 +80,14 @@
         <span className="grow"></span>
         ${rec ? html`<button className="btn sm" onClick=${() => A.snack('Opening ' + c.rec + ' in ASPEN…')}><${I} n="ext" s="12" />Open in ASPEN</button>` : null}
         ${!compact ? html`
-          ${c.kind === 'channel' ? html`<button className="btn sm" onClick=${() => A.startCall(c.id, false, true)}><${I} n="phone" />Huddle</button>` : html`
+          ${c.kind === 'channel' ? html`<button className="btn sm" onClick=${() => A.startCall(c.id, false, true)}><${I} n="phone" />Team call</button>` : html`
             <button className="ib" title="Voice call" onClick=${() => A.startCall(c.id, false)}><${I} n="phone" /></button>
-            <button className="ib" title="Video call" onClick=${() => A.startCall(c.id, true)}><${I} n="video" /></button>`}
+            `}
           ${c.kind !== 'dm' ? html`<button className="ib" title="Add people" onClick=${() => A.set({ modal: { type: 'add', c } })}><${I} n="adduser" /></button>` : null}
           <button className=${'ib' + (S.panel && S.panel.type === (rec ? 'record' : 'info') ? ' on' : '')} title=${rec ? 'Record details' : 'Conversation info'} onClick=${() => A.set({ panel: S.panel ? null : { type: rec ? 'record' : 'info' } })}><${I} n=${rec ? 'record' : 'info'} /></button>` : null}
       </div>
       ${!compact ? html`<div className="tabs">${tabs.map(([k, l]) => html`<button className=${'tab' + (S.tab === k ? ' on' : '')} onClick=${() => A.set({ tab: k })}>${l}${k === 'pinned' && pins ? ' ' + pins : ''}${k === 'files' ? ' ' + c.msgs.filter((m) => m.file || (m.files && m.files.length)).length : ''}</button>`)}</div>` : null}
-      ${(huddle || live) && !compact ? html`<div className="banner call"><${I} n="phone" /><b>${c.kind === 'channel' ? 'Huddle' : 'Call'} in progress</b><span>${live ? 'You are in this call' : ''}</span><span className="grow"></span>${!live ? html`<button className="btn sm pri" onClick=${() => A.startCall(c.id, false, true)}>Join</button>` : null}</div>` : null}
+      ${(huddle || live) && !compact ? html`<div className="banner call"><${I} n="phone" /><b>${c.kind === 'channel' ? 'Team call' : 'Call'} in progress</b><span>${live ? 'You are in this call' : ''}</span><span className="grow"></span>${!live ? html`<button className="btn sm pri" onClick=${() => A.startCall(c.id, false, true)}>Join</button>` : null}</div>` : null}
       ${S.tab === 'files' && !compact ? html`<${ConvFiles} c=${c} />` : S.tab === 'pinned' && !compact ? html`<${ConvPinned} c=${c} />` : html`<${Feed} c=${c} />`}
       <div className="typing" aria-live="polite">${S.typing[c.id] ? A.USERS[S.typing[c.id]].name.split(' ')[0] + ' is typing…' : ''}</div>
       ${c.readonly && c.kind === 'channel' ? html`<div className="composer" style=${{ padding: '10px 12px', color: 'var(--fg2)', display: 'flex', alignItems: 'center', gap: 10 }}>Only managers can post here.<span className="grow"></span><button className="btn sm pri" onClick=${() => A.set({ modal: { type: 'announce' } })}><${I} n="megaphone" />New announcement</button></div>` : html`<${A.Composer} key=${c.id} c=${c} />`}

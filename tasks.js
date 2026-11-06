@@ -82,7 +82,7 @@
       ${item('Tasks', 'task', tk, sec === 'tasks' && !act, () => A.go('tasks'), 'Tasks and approvals')}
       ${item('Calls', 'calls', missed, sec === 'calls', () => A.go('calls'), 'Calls and call history')}
       ${item('People', 'people', 0, sec === 'people', () => A.go('people'), 'People and teams')}
-      ${item('Saved', 'saved', 0, sec === 'saved', () => A.go('saved'), 'Saved messages')}
+      ${item('Saved', 'saved', 0, sec === 'saved', () => A.go('saved'), 'Bookmarked messages')}
       <span className="sp"></span>
       ${item('Settings', 'settings', 0, sec === 'settings' || sec === 'admin', () => A.go('settings'))}</nav>`;
   };

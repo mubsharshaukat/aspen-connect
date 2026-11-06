@@ -10,7 +10,7 @@
     return html`<div className=${'av ' + (size ? 's' + size : '') + (sq ? ' sq' : '')} style=${{ background: x.color, cursor: onClick ? 'pointer' : undefined }} onClick=${onClick} title=${x.name}>
       ${x.photo ? html`<img className="avimg" src=${x.photo} alt="" />` : x.ini}${p ? html`<span className=${'pres ' + p} title=${A.presLabel(p)}></span>` : null}</div>`;
   };
-  A.presLabel = (p) => ({ on: 'Available', busy: 'Busy', dnd: 'Do not disturb', away: 'Away', brb: 'Be right back', off: 'Offline', call: 'In a call' })[p] || p;
+  A.presLabel = (p) => ({ on: 'Free', busy: 'Busy', dnd: 'No interruptions', away: 'Away', brb: 'Back shortly', off: 'Off', call: 'On a call' })[p] || p;
   A.GroupPic = function GroupPic({ c, size }) {
     const ph = c.photo || A.GPICS[c.id], sz = size || 32;
     if (ph) return html`<span className="av sq" style=${{ width: sz, height: sz }}><img className="avimg" src=${ph} alt="" /></span>`;
@@ -164,7 +164,7 @@
         <div className="rail" role="navigation" aria-label="Sections">
           ${RAIL.map(([k, ic, l]) => html`<button className=${'ri' + (S.section === k ? ' on' : '')} onClick=${() => A.go(k)} aria-current=${S.section === k ? 'page' : undefined}><${I} n=${ic} s="20" />${l}${badge[k] ? html`<span className=${'badge' + (k === 'channels' ? ' blue' : '')}>${badge[k]}</span>` : null}</button>`)}
           <span className="sp"></span>
-          <button className=${'ri' + (S.section === 'saved' ? ' on' : '')} onClick=${() => A.go('saved')}><${I} n="saved" s="20" />Saved</button>
+          <button className=${'ri' + (S.section === 'saved' ? ' on' : '')} onClick=${() => A.go('saved')}><${I} n="saved" s="20" />Bookmarks</button>
           <button className=${'ri' + (S.section === 'admin' ? ' on' : '')} onClick=${() => A.go('admin')}><${I} n="admin" s="20" />Admin</button>
           <button className="me" title="Status and settings" onClick=${(e) => { e.stopPropagation(); A.set({ pop: { type: 'status', x: 62, y: e.currentTarget.getBoundingClientRect().top - document.querySelector('.cwin').getBoundingClientRect().top - 300 } }); }}><${A.Av} u=${A.ME} /></button>
         </div>

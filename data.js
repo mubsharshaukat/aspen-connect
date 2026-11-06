@@ -189,10 +189,10 @@
   ];
 
   A.CALLS = [
-    { id: 'c1', who: 'u6', dir: 'missed', kind: 'Voice', t: ago(62), dur: '' },
-    { id: 'c2', who: 'grp-sp', dir: 'out', kind: 'Huddle', t: day(1, 10, 2), dur: '18 min' },
-    { id: 'c3', who: 'u5', dir: 'in', kind: 'Video', t: day(1, 15, 12), dur: '6 min' },
-    { id: 'c4', who: 'u3', dir: 'out', kind: 'Voice', t: day(2, 9, 40), dur: '2 min' },
+    { id: 'c1', who: 'u6', dir: 'missed', kind: 'Call', t: ago(62), dur: '' },
+    { id: 'c2', who: 'grp-sp', dir: 'out', kind: 'Team call', t: day(1, 10, 2), dur: '18 min' },
+    { id: 'c3', who: 'u5', dir: 'in', kind: 'Call', t: day(1, 15, 12), dur: '6 min' },
+    { id: 'c4', who: 'u3', dir: 'out', kind: 'Call', t: day(2, 9, 40), dur: '2 min' },
   ];
 
   A.REPLIES = {

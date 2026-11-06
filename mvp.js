@@ -120,7 +120,7 @@
       ${item('Chat', 'chat', un.chat, sec === 'inbox' && !act, () => A.go('inbox'))}
       ${item('Calls', 'calls', missed, sec === 'calls', () => A.go('calls'), 'Calls and call history')}
       ${item('People', 'people', 0, sec === 'people', () => A.go('people'), 'People and teams')}
-      ${item('Saved', 'saved', 0, sec === 'saved', () => A.go('saved'), 'Saved messages')}
+      ${item('Bookmarks', 'saved', 0, sec === 'saved', () => A.go('saved'), 'Bookmarked messages')}
       <span className="sp"></span>
       ${item('Help', 'help', 0, false, () => A.set({ tour: 0 }), 'Take the quick tour')}
       ${item('Settings', 'settings', 0, sec === 'settings' || sec === 'admin', () => A.go('settings'))}</nav>`;
