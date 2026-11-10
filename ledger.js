@@ -41,7 +41,7 @@
     const snack = S.snack ? html`<div className="snack" role="status">${S.snack.text}${S.snack.undo ? html`<span className="link" onClick=${() => { S.snack.undo(); A.set({ snack: null }); }}>Undo</span>` : null}</div>` : null;
     const outside = (e) => { if (S.pop && !e.target.closest('.pop')) close(); };
     const mark = html`<span className="lgmark" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M9.5 3h13A6.5 6.5 0 0 1 29 9.5v12a6.5 6.5 0 0 1-6.5 6.5H13.4L7.5 32.5V27.3A6.5 6.5 0 0 1 3 21.5v-12A6.5 6.5 0 0 1 9.5 3z" fill="#3a9a3e"/><text x="16" y="21.6" textAnchor="middle" fontFamily="'Segoe UI',Arial,sans-serif" fontWeight="700" fontSize="17" fill="#fff">A</text></svg></span>`;
-    if (docked) return html`<div className="cwin dock" onClick=${outside}><div className="ctitle lgdock">${mark}<b className="ttl">Connect</b><span className="grow"></span>
+    if (docked) return html`<div className="cwin dock" onClick=${outside}><div className="ctitle lgdock">${mark}<b className="ttl">Aspen Messaging</b><span className="grow"></span>
         <button className="wb" title="Open full window" onClick=${() => A.set({ connect: 'open' })}><${I} n="popout" s="12" /></button><button className="wb x" title="Close" onClick=${() => A.set({ connect: 'closed' })}><${I} n="close" s="12" /></button></div>
       ${c ? html`<${A.Conv3} c=${c} docked=${true} />` : null}${modalEl}${popEl}${snack}</div>`;
     let body;
@@ -54,7 +54,7 @@
     }
     return html`<div className=${'cwin' + (S.max ? ' max' : '')} onClick=${outside} onKeyDown=${(e) => { if (e.key === 'Escape') A.set({ pop: null, modal: null, qs: false }); }}>
       <div className="ctitle lgmast" onDoubleClick=${() => A.set({ max: !S.max })}>
-        ${mark}<b className="ttl">Connect</b>
+        ${mark}<b className="ttl">Aspen Messaging</b>
         <button className="locbtn" title="Location (same as ASPEN). Channels and people follow it." onClick=${(e) => A.popAt('loc', e, {}, 0)}><${I} n="location" s="12" />${S.location}<${I} n="down" s="12" /></button>
         <label className="sbox"><${I} n="search" /><input id="desk-q" value=${S.q} onChange=${(e) => A.set({ q: e.target.value, section: 'inbox' })} placeholder="Search people, messages, records, work" />${S.q ? html`<button aria-label="Clear search" onClick=${() => A.set({ q: '' })}><${I} n="close" s="12" /></button>` : null}<kbd>Ctrl K</kbd></label>
         <span className="grow"></span>

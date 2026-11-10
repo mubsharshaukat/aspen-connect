@@ -113,13 +113,13 @@
   A.WinToast = function WinToast({ t }) {
     if (t.kind === 'call') {
       const u = A.USERS[t.from];
-      return html`<div className="wtoast" role="alertdialog"><div className="th"><span className="logo" style=${{ width: 14, height: 14, borderRadius: 3, background: '#3a9a3e' }}></span>ASPEN Connect<span className="grow"></span><button onClick=${() => A.dismiss(t.id)}><${I} n="close" s="12" /></button></div>
+      return html`<div className="wtoast" role="alertdialog"><div className="th"><span className="logo" style=${{ width: 14, height: 14, borderRadius: 3, background: '#3a9a3e' }}></span>Aspen Messaging<span className="grow"></span><button onClick=${() => A.dismiss(t.id)}><${I} n="close" s="12" /></button></div>
         <div className="tb2"><${A.Av} u=${t.from} size="48" /><div><b style=${{ fontSize: 14 }}>${u.name}</b><div style=${{ color: 'var(--fg2)' }}>Incoming ${t.video ? 'video' : 'voice'} call${t.ctx ? ' · ' + t.ctx : ''}</div></div></div>
         <div className="ta"><button className="btn dan" onClick=${() => { A.dismiss(t.id); A.CALLS.unshift({ id: A.nextId(), who: t.from, dir: 'missed', kind: t.video ? 'Video' : 'Voice', t: Date.now(), dur: '' }); A.snack('Call declined'); }}>Decline</button>
           <button className="btn pri" onClick=${() => { A.dismiss(t.id); A.answer(t, false); }}><${I} n="phone" />Answer</button></div></div>`;
     }
     const c = A.conv(t.conv), u = A.USERS[t.from];
-    return html`<div className="wtoast"><div className="th"><span className="logo" style=${{ width: 14, height: 14, borderRadius: 3, background: '#3a9a3e' }}></span>ASPEN Connect<span className="grow"></span><button onClick=${() => A.dismiss(t.id)} aria-label="Dismiss"><${I} n="close" s="12" /></button></div>
+    return html`<div className="wtoast"><div className="th"><span className="logo" style=${{ width: 14, height: 14, borderRadius: 3, background: '#3a9a3e' }}></span>Aspen Messaging<span className="grow"></span><button onClick=${() => A.dismiss(t.id)} aria-label="Dismiss"><${I} n="close" s="12" /></button></div>
       <div className="tb2" style=${{ cursor: 'pointer' }} onClick=${() => { A.dismiss(t.id); A.openConv(t.conv); }}><${A.Av} u=${t.from} pres=${false} /><div style=${{ minWidth: 0 }}><b>${u.name}${c.kind !== 'dm' ? ' in ' + (c.kind === 'channel' ? '#' : '') + A.convName(c) : ''}</b><div style=${{ color: 'var(--fg2)' }}>${A.S.settings.preview ? t.text : 'New message'}</div></div></div>
       ${c.kind === 'dm' ? html`<${ToastReply} t=${t} />` : null}</div>`;
   };
@@ -141,13 +141,13 @@
     if (docked) {
       const c = A.conv(S.convId);
       return html`<div className="cwin dock">
-        <div className="ctitle"><${I} n="chat" style=${{ color: 'var(--accent)' }} /><b style=${{ fontWeight: 600 }}>ASPEN Connect</b><span className="grow"></span>
+        <div className="ctitle"><${I} n="chat" style=${{ color: 'var(--accent)' }} /><b style=${{ fontWeight: 600 }}>Aspen Messaging</b><span className="grow"></span>
           <button className="wb" title="Open full window" onClick=${() => A.set({ connect: 'open' })}><${I} n="popout" s="12" /></button><button className="wb x" title="Close" onClick=${() => A.set({ connect: 'closed' })}><${I} n="close" s="12" /></button></div>
         ${c ? html`<${A.Conversation} c=${c} compact=${true} />` : null}
         ${S.modal ? html`<${A.Modal} />` : null}${S.pop ? html`<${A.Pop} />` : null}</div>`;
     }
     return html`<div className=${'cwin' + (S.max ? ' max' : '')} onClick=${(e) => { if (S.pop && !e.target.closest('.pop')) A.set({ pop: null }); }}>
-      <div className="ctitle" onDoubleClick=${() => A.set({ max: !S.max })}><span className="logo" style=${{ width: 16, height: 16, borderRadius: 3, background: '#3a9a3e', color: '#fff', display: 'grid', placeItems: 'center', font: '700 10px/1 var(--font)' }}>A</span>ASPEN Connect for MUBASHIR<span className="grow"></span>
+      <div className="ctitle" onDoubleClick=${() => A.set({ max: !S.max })}><span className="logo" style=${{ width: 16, height: 16, borderRadius: 3, background: '#3a9a3e', color: '#fff', display: 'grid', placeItems: 'center', font: '700 10px/1 var(--font)' }}>A</span>Aspen Messaging for MUBASHIR<span className="grow"></span>
         <button className="wb" title="Dock beside ASPEN" onClick=${() => A.set({ connect: 'docked' })}><${I} n="dock" s="12" /></button>
         <button className="wb" title="Minimize" onClick=${() => A.set({ connect: 'closed' })}><${I} n="min" s="12" /></button>
         <button className="wb" title=${S.max ? 'Restore' : 'Maximize'} onClick=${() => A.set({ max: !S.max })}><${I} n=${S.max ? 'restore' : 'max'} s="12" /></button>

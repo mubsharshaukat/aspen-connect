@@ -83,7 +83,7 @@
     const S = A.S; S.integ = S.integ || { outlook: true, email: true, sms: true, teams: false };
     const tog = (k) => A.set((s) => { s.integ[k] = !s.integ[k]; });
     const row = (k, ic, name, desc, extra) => html`<div className="intg"><span className="intgic"><${I} n=${ic} s="18" /></span><div className="intgt"><b>${name}</b><span>${desc}</span>${S.integ[k] && extra ? html`<code>${extra}</code>` : null}</div><${Sw} on=${S.integ[k]} label=${name} set=${() => tog(k)} /></div>`;
-    return html`<${Page} title="Integrations" sub="Connect ASPEN Messaging to the tools your store already uses.">
+    return html`<${Page} title="Integrations" sub="Connect Aspen Messaging to the tools your store already uses.">
       ${row('outlook', 'calendar', 'Outlook calendar', 'Work items with a due time can be added to your Outlook calendar.', 'Signed in as ' + A.USERS[A.ME].name)}
       ${row('email', 'mail', 'Email to task', 'Forward an email and it becomes a task in My work, with the email attached.', 'tasks+lakeside@aspen.chartersoftware.cloud')}
       ${row('sms', 'phone', 'Customer texting', 'Text customers from a record conversation. Replies come back into the same thread.', '(555) 201-4410 · Lakeside Powersports')}
