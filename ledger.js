@@ -56,7 +56,6 @@
     return html`<div className=${'cwin' + (S.max ? ' max' : '')} onClick=${outside} onKeyDown=${(e) => { if (e.key === 'Escape') A.set({ pop: null, modal: null, qs: false }); }}>
       <div className="ctitle lgmast" onDoubleClick=${() => A.set({ max: !S.max })}>
         ${mark}<b className="ttl">Aspen Messaging</b>
-        <button className="locbtn" title="Location (same as ASPEN). Channels and people follow it." onClick=${(e) => A.popAt('loc', e, {}, 0)}><${I} n="location" s="12" />${S.location}<${I} n="down" s="12" /></button>
         <label className="sbox"><${I} n="search" /><input id="desk-q" value=${S.q} onChange=${(e) => A.set({ q: e.target.value, section: 'inbox' })} placeholder="Search people, messages, records, work" />${S.q ? html`<button aria-label="Clear search" onClick=${() => A.set({ q: '' })}><${I} n="close" s="12" /></button>` : null}<kbd>Ctrl K</kbd></label>
         <span className="grow"></span>
         ${A.BellBtn ? html`<${A.BellBtn} />` : null}
